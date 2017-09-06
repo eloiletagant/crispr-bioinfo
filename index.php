@@ -16,15 +16,15 @@
    <div class="col s12">
      <ul class="tabs">
        <li class="tab col s3"><a id="tab1" href="#div1">Test 1</a></li>
-       <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-       <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-       <li class="tab col s3"><a href="#test4">Test 4</a></li>
+       <li class="tab col s3"><a id="tab2" class="active" href="#div2">Test 2</a></li>
+       <li class="tab col s3 disabled"><a id="tab3" href="#div3">Disabled Tab</a></li>
+       <li class="tab col s3"><a id="tab4" href="#div4">Test 4</a></li>
      </ul>
    </div>
-   <div id="div1" class="col s12">Test 1</div>
-   <div id="test2" class="col s12">Test 2</div>
-   <div id="test3" class="col s12">Test 3</div>
-   <div id="test4" class="col s12">Test 4</div>
+   <div id="div1" class="col s12"></div>
+   <div id="div2" class="col s12"></div>
+   <div id="div3" class="col s12"></div>
+   <div id="div4" class="col s12"></div>
  </div>
 
     </div>
