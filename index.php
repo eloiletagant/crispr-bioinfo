@@ -12,11 +12,10 @@
         <a class="btn-large waves-effect waves-light orange">Get Started</a>
       </div>
   -->
-  <button id="tab1">test</button>
   <div class="row">
    <div class="col s12">
      <ul class="tabs">
-       <li class="tab col s3"><a  href="#div1">Test 1</a></li>
+       <li class="tab col s3"><a id="tab1" href="#div1">Test 1</a></li>
        <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
        <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
        <li class="tab col s3"><a href="#test4">Test 4</a></li>
