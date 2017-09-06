@@ -7,10 +7,25 @@
       <div class="row center">
         <h5 class="header col s12 light"></h5>
       </div>
+      <!--
       <div class="row center">
         <a class="btn-large waves-effect waves-light orange">Get Started</a>
       </div>
-      <br><br>
+  -->
+  <div class="row">
+   <div class="col s12">
+     <ul class="tabs">
+       <li class="tab col s3"><a id="tab1" href="#div1">Test 1</a></li>
+       <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+       <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+       <li class="tab col s3"><a href="#test4">Test 4</a></li>
+     </ul>
+   </div>
+   <div id="div1" class="col s12">Test 1</div>
+   <div id="test2" class="col s12">Test 2</div>
+   <div id="test3" class="col s12">Test 3</div>
+   <div id="test4" class="col s12">Test 4</div>
+ </div>
 
     </div>
   </div>
