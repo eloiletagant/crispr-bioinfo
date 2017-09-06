@@ -8,7 +8,7 @@
 
 
 $(document).ready(function(){
-    $("#tab1").addEventListener("click", function(){
-        $("#div1").load("../inc/test.php")
-    })
-})
+    $("#tab1").click(function(){
+        $("#div1").load("inc/test.php")
+    });
+});
