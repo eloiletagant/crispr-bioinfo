@@ -15,3 +15,10 @@
  <div class="row center">
    <a class="btn-large waves-effect waves-light orange">Envoyer</a>
  </div>
+
+
+<script>
+$(document).ready(function(){
+    $('select').material_select();
+})
+</script>
