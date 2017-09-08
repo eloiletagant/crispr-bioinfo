@@ -1,5 +1,5 @@
 
-  <footer class="page-footer orange">
+  <footer class="page-footer light-green">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">

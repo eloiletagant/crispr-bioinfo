@@ -8,6 +8,7 @@
 
 
 $(document).ready(function(){
+    $('select').material_select();
     $("#tab1").click(function(){
         $("#div1").load("inc/test1.php")
     });
