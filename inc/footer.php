@@ -1,4 +1,4 @@
-
+</main>
   <footer class="page-footer light-green">
     <div class="container">
       <div class="row">

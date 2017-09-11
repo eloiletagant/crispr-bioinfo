@@ -24,5 +24,8 @@ include 'func/func.php';
 </head>
 <body>
 
+<header>
+    <h4 class="center-align"><a href="index.php" class="light-green-text">sgRNA Finder</a></h4>
+</header>
 
-<h4 class="center-align"><a href="index.php" class="light-green-text">sgRNA Finder</a></h4>
+<main>

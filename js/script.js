@@ -24,6 +24,25 @@ $(document).ready(function(){
 
 });
 
+$(function(){
+    $('header').data('size','big');
+});
+
+$(window).scroll(function(){
+    if ($(document).scrollTop() > 0) {
+        if ($('header').data('size') == 'big') {
+            $('header').data('size','small');
+            $('header').stop().addClass('body-is-scrolled')
+        }
+    } else {
+        if($('header').data('size') == 'small') {
+            $('header').data('size','big');
+            $('header').stop().removeClass('body-is-scrolled')
+            //$('header').css('padding-top', 0)
+        }
+    }
+});
+
 $('#submit_seq').click(function() {
 
     var seq = $('#seq').val()
