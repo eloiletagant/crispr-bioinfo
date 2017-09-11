@@ -3,6 +3,8 @@
 
 <?php
 session_start();
+
+include 'func/func.php';
 ?>
 
 
@@ -16,5 +18,11 @@ session_start();
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
 </head>
 <body>
+
+
+<h4 class="center-align"><a href="index.php" class="light-green-text">sgRNA Finder</a></h4>

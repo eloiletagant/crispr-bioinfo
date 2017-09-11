@@ -1,4 +1,4 @@
-<div class="container">
+
   <div class="section">
 
     <!--   Icon Section   -->
@@ -32,5 +32,3 @@
     </div>
 
   </div>
-  <br><br>
-</div>
