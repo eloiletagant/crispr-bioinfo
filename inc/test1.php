@@ -1,24 +1,29 @@
-<div class="input-field col s12 m12">
-   <select>
-     <option value="" disabled selected>Choose your option</option>
-     <option value="1">Option 1</option>
-     <option value="2">Option 2</option>
-     <option value="3">Option 3</option>
-   </select>
-   <label>Materialize Select</label>
- </div>
-
-
-
-
-
- <div class="row center">
-   <a class="btn-large waves-effect waves-light orange">Envoyer</a>
- </div>
-
+<?php
+session_start();
+$data = $_SESSION['res'];
+?>
 
 <script>
-$(document).ready(function(){
-    $('select').material_select();
-})
+
+//"error":"","pam_sequence":"NGG","program_name":"CRISPRdirect","results":[],"sequence_name":"","specificity_check":"Human (Homo sapiens) genome, GRCh37/hg19 (Feb, 2009)","time":"2017-09-11 19:49:48"}
+//{"end":"26","gc":"75.00","hit_12mer":"3","hit_20mer":"1","hit_8mer":"103","resite":["Bme1580I"],"sequence":"ccgcgcgtcgtgcccgaccagag","start":"4","strand":"-","tm":"82.34","tttt":"0"}
+
+    $('#content').empty()
+    var data = '<?= $data ?>'
+    if (data.error !== '') {
+        $('#content').text(data.error)
+    } else {
+        $('#content').text('PAM sequence : ' + data.pam_sequence + '<br />')
+        for (var i = 0; i < data.results.length; i++) {
+            data.results[i]
+        }
+    }
+
 </script>
+
+<div id="content">
+
+</div>
+
+
+<?php include 'inc/jsfiles.php'; ?>

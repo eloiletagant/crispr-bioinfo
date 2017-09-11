@@ -22,3 +22,15 @@ $(document).ready(function(){
         $("#div4").load("inc/test4.php")
     });
 });
+
+$('#submit_seq').click(function() {
+
+    var seq = $('#seq').val()
+    $.ajax({
+        type: "POST",
+        url: "some.php",
+        data:{
+            seq: seq
+        }
+    });
+})
