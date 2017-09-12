@@ -26,12 +26,21 @@ $_SESSION['res'] = 'NULL';
       <form method="POST" action="">
            <div class="row">
              <form class="col s12">
-               <div class="row">
-                 <div class="input-field col s12">
-                   <textarea id="seq" name="seq" class="materialize-textarea" placeholder="atgccgcgcgtcgtgcccgaccagagaagcaagttcgagaacgaggagttttttaggaagctgagccgcgagtgtgagattaagtacacgggcttcagggaccggccccacgaggaacgccaggcacgcttccagaacgcctgccgcgacggccgctcggaaatcgcttttgtggccacagaaccaatctgtctctccagttttttccggccagctggcagggagaacagcgacaaacacctagccgagagtatgtcgacttagaaagagaagcaggcaaggtatatttgaaggctcccatgattctgaatggagtctgtgttatctggaaaggctggattgatctccaaagactggatggtatgggctgtctggagtttgatgaggagcgagcccagcaggaggatgcattagcacaacaggcctttgaagaggctcggagaaggacacgcgaatttgaagatagagacaggtctcatcgggaggaaatggaggcaagaagacaacaagaccctagtcctggttccaatttaggtggtggtgatgacctcaaacttcgttaa"></textarea>
-                   <label for="seq">Entrez une séquence</label>
+                 <div class="row">
+                     <div class="input-field col m12">
+                        <select id="species">
+                          <!--<option value="" disabled selected>Choose your option</option>-->
+                          <option value="TAIR10" selected>Thale cress (Arabidopsis thaliana) genome, TAIR10 (Nov, 2010)</option>
+                          <option value="IGGP_12x">Grape (Vitis vinifera) genome, IGGP_12x (Jun, 2011)</option>
+                        </select>
+                        <label>Specificity check</label>
+                      </div>
+
+                     <div class="input-field col s12">
+                       <textarea id="seq" name="seq" class="materialize-textarea" placeholder="atgccgcgcgtcgtgcccgaccagagaagcaagttcgagaacgaggagttttttaggaagctgagccgcgagtgtgagattaagtacacgggcttcagggaccggccccacgaggaacgccaggcacgcttccagaacgcctgccgcgacggccgctcggaaatcgcttttgtggccacagaaccaatctgtctctccagttttttccggccagctggcagggagaacagcgacaaacacctagccgagagtatgtcgacttagaaagagaagcaggcaaggtatatttgaaggctcccatgattctgaatggagtctgtgttatctggaaaggctggattgatctccaaagactggatggtatgggctgtctggagtttgatgaggagcgagcccagcaggaggatgcattagcacaacaggcctttgaagaggctcggagaaggacacgcgaatttgaagatagagacaggtctcatcgggaggaaatggaggcaagaagacaacaagaccctagtcctggttccaatttaggtggtggtgatgacctcaaacttcgttaa"></textarea>
+                       <label for="seq">Paste a nucleotide sequence</label>
+                     </div>
                  </div>
-               </div>
              </form>
            </div>
 
@@ -41,7 +50,7 @@ $_SESSION['res'] = 'NULL';
       </form>
 
     </div>
-
+<!--
     <div>
         Sed nulla cred Banksy jean shorts. Reprehenderit mumblecore incididunt anim accusamus. Keffiyeh Cosby sweater in cornhole elit, tote bag cillum banjo. Shabby chic YOLO banh mi sunt. Artisan blog Neutra, polaroid adipisicing Banksy +1 lo-fi umami distillery fixie seitan. Semiotics artisan flannel mollit craft beer Blue Bottle. Bespoke biodiesel banh mi literally.
 
@@ -50,8 +59,27 @@ YOLO Marfa drinking vinegar polaroid laborum veniam, est disrupt umami wayfarers
 In post-ironic umami, sint +1 gluten-free pickled disrupt vinyl jean shorts velit placeat est American Apparel. Flannel cupidatat deserunt master cleanse cornhole vinyl, Banksy 8-bit fugiat pariatur. Schlitz Intelligentsia incididunt ugh, literally minim skateboard ennui. Labore deep v placeat, mlkshk biodiesel church-key post-ironic Cosby sweater twee nesciunt Blue Bottle. Salvia vero esse, exercitation cliche chambray aliquip gluten-free yr post-ironic pug narwhal kale chips ennui hella. Consequat bitters salvia delectus esse. Fap kogi forage culpa Tumblr, accusamus PBR Thundercats PBR&B banjo ullamco 8-bit bitters minim you probably haven't heard of them.
 
 Sed nulla cred Banksy jean shorts. Reprehenderit mumblecore incididunt anim accusamus. Keffiyeh Cosby sweater in cornhole elit, tote bag cillum banjo. Shabby chic YOLO banh mi sunt. Artisan blog Neutra, polaroid adipisicing Banksy +1 lo-fi umami distillery fixie seitan. Semiotics artisan flannel mollit craft beer Blue Bottle. Bespoke biodiesel banh mi literally.
-    </div>
+    </div>-->
 
-<script src="js/script.js"></script>
+<script>
+    $('#submit_seq').click(function() {
+
+        var seq = $('#seq').val()
+        if (seq === '') {
+            seq = document.getElementById('seq').placeholder
+        }
+        var dbList = document.getElementById("species")
+        var db = dbList.options[dbList.selectedIndex].value
+        $.ajax({
+            type: "POST",
+            url: "some.php",
+            data:{
+                seq: seq,
+                db: db
+            }
+        });
+
+    })
+</script>
 
 <?php include 'inc/footer.php'; ?>

@@ -21,11 +21,14 @@ include 'func/func.php';
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
+  <script src="js/script.js"></script>
 </head>
 <body>
 
+<a href="index.php" class="light-green-text">
 <header>
-    <h4 class="center-align"><a href="index.php" class="light-green-text">sgRNA Finder</a></h4>
+    <h4 class="center-align">sgRNA Finder</h4>
 </header>
+</a>
 
 <main>

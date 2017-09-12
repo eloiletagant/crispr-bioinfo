@@ -17,7 +17,7 @@ $(document).ready(function () {
     //"{"error":"","pam_sequence":"NGG","program_name":"CRISPRdirect","results":[],"sequence_name":"","specificity_check":"Human (Homo sapiens) genome, GRCh37/hg19 (Feb, 2009)","time":"2017-09-12 00:58:22"}"
 
     var data = '<?= $data ?>'
-    console.log(data)
+    //console.log(data)
     var json = JSON.parse(data);
     console.log(json)
     if (json.error !== "") {
@@ -26,7 +26,10 @@ $(document).ready(function () {
         $('#content').text("Aucun résultat trouvé")
 
     } else {
-        $('#content').text('PAM sequence : ' + json.pam_sequence)
+        $('#content').html('PAM sequence : ' + json.pam_sequence + '<br />')
+        $('#content').append('Espece : ' + json.specificity_check)
+
+
         ConvertJsonToTable(json.results, 'jsonTable', null, 'Download');
         /*for (var i = 0; i < data.results.length; i++) {
             data.results[i]
