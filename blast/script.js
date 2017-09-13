@@ -1,30 +1,30 @@
 function testBlast(){
-	var seq = document.getElementById("input-seq");
+	/*test function*/
+	var seq = document.getElementById("input-seq"); //user sequence
 	console.log(seq.value);
 	// var db = document.getElementById("input-organism");
 	var db = "nr";
 	var Tblast = blast(seq.value, db);
 
-	console.log("jaison", Tblast);
-
+	console.log("Result that we are looking for : ", Tblast);
 }
-
-var resultJSON = undefined;
 
 function blast(seq, db) {
 	//BLaster execute un Blastn grace a une sequence/un locus ID en parametre et retourne un JSON des résultats
-	//@param seq doit etre en majuscule et ne contenir que des ATCG
-	//@param db corresponda un id d'organism (voir liste blast)
+	//@param seq needs to be only composed by "ATCG" (checked earlier)
+	//@param db id of the database
 
+	var rid; //request id
+	var r; //string (Blast output formatted in a json string)
 
-	//ENVOYER LA REQUETTE
+	//Create en send the Blast POST request
 	var data = "CMD=Put&PROGRAM=blastn&QUERY=" + seq + "&DATABASE=" + db;
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi", true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(data);
 
-	var rid = undefined; //request id
+	//Listenning to the XHR then get the RID from the xhr response.
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			//GET RID DU POST
@@ -35,44 +35,44 @@ function blast(seq, db) {
 			rid = ridObject[0].defaultValue;
 			console.log("RID :", rid);
 		}
-
-		//RECUPERER LES INFO
+		//Get the results of the blast thanks to th RID
 		if (rid !== undefined) {
 
-			//interogation du serveur en loop, exit quand result
-			var interval = setInterval (function() {							//toutes les 10 secondes on execute :
-				getJSONResults(rid);
-				var r = resultJSON;
+			//Asking NCBI server for the blast results every 10 seconds
+			var interval = setInterval (function() {
+				//asking for the blast results
+				r = getJSONResults(rid);
 				console.log("R : " + r);
+				//if we have results, stop the loop then retrun the JSON
 				if (r !== undefined){
-					console.log("FIN DE LA BOUCLE");
-					clearInterval(interval);
-					return r;
+					console.log("End of the loop");
+					clearInterval(interval); //stop the loop
+					return r; //return the json string to the parent function (which is interval)
 				}
 			}, 10000)
 
 		} else {
 			console.log("RID is undefined");
 		}
-
-		return interval;
-
+		return interval; //return the JSON string to the parent function (line 31 :/)
 	}
 }
 
-//RECUPERATION DE LA PAGE RESULTAT
 function getJSONResults(rid) {
-
+/*	This function ask NCBI server for a BLAST result;
+	If the response is not "parsable", it means that NCBI servers don't have the blast resuls yet so we have to wait
+	@param rid the request id */
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&FORMAT_TYPE=JSON2_S&RID=" + rid, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			try {
-				//PARSING DE LA PAGE
-				resultJSON = JSON.parse(xhr.responseText);
-				console.log("On a trouvé un  resultat, on cherche a le return");
-				//return resultJSON;
+				// try to parse the response string
+				var resultJSON = JSON.parse(xhr.responseText);
+				console.log("NCBI servers answered with the correct format, we now need to return these results");
+				return resultJSON;
 			} catch (e) {
 				console.log("WAITING");
 			}
