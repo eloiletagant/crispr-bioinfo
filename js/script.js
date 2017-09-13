@@ -14,7 +14,7 @@
         $("#div2").load("inc/test2.php")
     });
     $("#tab3").click(function(){
-        $("#div3").load("inc/test3.php")
+        $("#div3").load("inc/Plasmide.php")
     });
     $("#tab4").click(function(){
         $("#div4").load("inc/test4.php")
