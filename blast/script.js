@@ -6,15 +6,14 @@ function testBlast(){
 	var db = "nr";
 	//var Tblast =
 	blast(seq.value, db);
-	//console.log("jaison", Tblast);
-
 	console.log("Result that we are looking for : ", Tblast);
 }
 
 function blast(seq, db) {
-	//BLaster execute un Blastn grace a une sequence/un locus ID en parametre et retourne un JSON des résultats
+	//blast execute a blastn through NCBI blast webservice thanks to a query sequence against a specified database
 	//@param seq needs to be only composed by "ATCG" (checked earlier)
 	//@param db id of the database
+	//@return a json string containinn blast results
 
 	var rid; //request id
 	var r; //string (Blast output formatted in a json string)
@@ -63,11 +62,12 @@ function blast(seq, db) {
 function getJSONResults(rid) {
 /*	This function ask NCBI server for a BLAST result;
 	If the response is not "parsable", it means that NCBI servers don't have the blast resuls yet so we have to wait
-	@param rid the request id */
+	@param rid the request id
+	@ return a json string containing blast results */
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", "https://blast.ncbi.nlm.nih.gov/blast/Blast.cgi?CMD=Get&FORMAT_TYPE=JSON2_S&RID=" + rid, true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	
+
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			try {
@@ -76,7 +76,7 @@ function getJSONResults(rid) {
 				console.log("NCBI servers answered with the correct format, we now need to return these results");
 				return resultJSON;
 			} catch (e) {
-				console.log("WAITING");
+				console.log("WAITING (blast results aren't available yet)");
 			}
 		}
 	}
