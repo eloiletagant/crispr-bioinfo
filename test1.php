@@ -29,11 +29,18 @@ $(document).ready(function () {
         $('#content').html('PAM sequence : ' + json.pam_sequence + '<br />')
         $('#content').append('Espece : ' + json.specificity_check)
 
+        var res = $.grep(json.results, function(n, i) {
+          return n.hit_20mer == '1' && n.hit_12mer == '1' && n.tttt == '0'
+        });
 
-        ConvertJsonToTable(json.results, 'jsonTable', null, 'Download');
-        /*for (var i = 0; i < data.results.length; i++) {
-            data.results[i]
-        }*/
+        if (res.length > 0) {
+            ConvertJsonToTable(res, 'jsonTable', null, 'Download')
+        } else {
+            $('#content').append('Les résultats trouvés ne sont pas assez spécifiques.')
+        }
+
+
+
     }
 });
 </script>

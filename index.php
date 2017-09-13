@@ -32,6 +32,7 @@ $_SESSION['res'] = 'NULL';
                           <!--<option value="" disabled selected>Choose your option</option>-->
                           <option value="TAIR10" selected>Thale cress (Arabidopsis thaliana) genome, TAIR10 (Nov, 2010)</option>
                           <option value="IGGP_12x">Grape (Vitis vinifera) genome, IGGP_12x (Jun, 2011)</option>
+                          <option value="hg19">Human (Homo sapiens) genome, GRCh37/hg19 (Feb, 2009)</option>
                         </select>
                         <label>Specificity check</label>
                       </div>
