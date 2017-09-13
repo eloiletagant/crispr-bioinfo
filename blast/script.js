@@ -4,7 +4,9 @@ function testBlast(){
 	console.log(seq.value);
 	// var db = document.getElementById("input-organism");
 	var db = "nr";
-	var Tblast = blast(seq.value, db);
+	//var Tblast =
+	blast(seq.value, db);
+	//console.log("jaison", Tblast);
 
 	console.log("Result that we are looking for : ", Tblast);
 }
