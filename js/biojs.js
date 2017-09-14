@@ -191,17 +191,8 @@ function filter(seq, crisprOuput){
 	    }
 	  }
 
-		//On regarde quelle passe on a éxécuté
-		if(passe3){
-			console.log("passe 3", rowsFiltred)
-		}
-		else if (passe2) {
-			console.log("passe 2", rowsFiltred)
-		}
-		else {
-			console.log("passe", rowsFiltred)
-		}
 		console.log("JSON filtré", rowsFiltred) //affichage du json filtré
+		return rowsFiltred;
 	}
 
 
