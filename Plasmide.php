@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<!-- Jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <?php
 include 'inc/header.php';
@@ -31,12 +32,14 @@ include 'inc/header.php';
     </div>
 
 </div></div>
-
+</div>
+<div style="padding-bottom: 100px">
+</div>
 <div class="center-align" style="padding-bottom: 10px">
 <a target=_blank class="btn-large waves-effect waves-light orange" href="" id="url">Choisir une option</a>
 </div>
-?>
-
+<div style="padding-bottom: 100px">
+</div>
 <!--<div class="col s12 center-align" style="padding-left: 10px; padding-right: 10px;">
 <div style="display: block;"><iframe id="pv-iframe-demo" style="width: 100%; height: 800px;" src="https://designer.genomecompiler.com/plasmid_iframe?file_url=http://test.basicompta.fr/pEn_C1_1_SWEET3.ape" width="1100" height="1100" frameborder="0" scrolling="no"></iframe></div>
 </div>-->
