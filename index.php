@@ -5,29 +5,11 @@ $_SESSION['res'] = 'NULL';
 ?>
 
     <div class="container">
-        <div class="row">
-         <div class="col s12">
-           <ul class="tabs">
-             <li class="tab col s3"><a id="tab1" href="#div1">home</a></li>
-             <li class="tab col s3"><a id="tab2" class="active" href="#div2">how to use</a></li>
-             <li class="tab col s3"><a id="tab3" href="#div3">my searches</a></li>
-             <li class="tab col s3"><a id="tab4" href="#div4">about</a></li>
-           </ul>
-         </div>
-         <div id="div1" class="col s12"></div>
-         <div id="div2" class="col s12"></div>
-         <div id="div3" class="col s12"></div>
-         <div id="div4" class="col s12"></div>
-       </div>
-    </div>
-
-
-    <div class="container">
 
       <form method="POST" action="">
            <div class="row">
              <form class="col s12">
-                 <div class="row">
+                 <div class="card row" style="margin-top: 50px;">
                      <div class="input-field col m12">
                         <select id="species">
                           <!--<option value="" disabled selected>Choose your option</option>-->
@@ -43,11 +25,34 @@ $_SESSION['res'] = 'NULL';
                        <label for="seq">Paste a nucleotide sequence</label>
                      </div>
                  </div>
+                 <div class="card row">
+                     <div class="input-field col s6">
+                        <input placeholder="1" id="nbrMaxTarget20" type="number" class="validate">
+                        <label for="first_name">Nb max de régions homologues au sgRNA de 20nt</label>
+                     </div>
+                     <div class="input-field col s6">
+                        <input placeholder="1" id="nbrMaxTarget12" type="number" class="validate">
+                        <label for="first_name">Nb max de régions homologues au sgRNA de 12nt</label>
+                     </div>
+                     <div class="input-field col s6">
+                        <input placeholder="1" id="nbrMaxTarget8" type="number" class="validate">
+                        <label for="first_name">Nb max de régions homologues au sgRNA de 8nt</label>
+                     </div>
+                     <div class="input-field col s3">
+                        <input placeholder="75" id="TMexpect" type="number" class="validate">
+                        <label for="first_name">Meilleur Tm attendu (°C)</label>
+                     </div>
+                     <div class="input-field col s3">
+                        <input placeholder="6" id="TMerror" type="number" class="validate">
+                        <label for="first_name">Marge d'erreur sur le Tm (°C)</label>
+                     </div>
+                 </div>
+
              </form>
            </div>
 
            <div class="row center">
-             <a id="submit_seq" href="test1.php" type="submit" class="btn-large waves-effect waves-light orange">Envoyer</a>
+             <a id="submit_seq" href="res.php" type="submit" class="btn-large waves-effect waves-light orange">Envoyer</a>
            </div>
       </form>
 

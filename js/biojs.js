@@ -140,8 +140,13 @@ function filter(seq, crisprOuput){
 	var TMmin = TMexpect - TMerror //minimum du tm
 	var TMmax = TMexpect+ TMerror // maximum tu tm
 
+try {
 	crisprOuput = JSON.parse(crisprOuput); //recuperation des resultats
-	var rows = crisprOuput.results //seq brute
+} catch (e) {
+	console.log("cetait du json")
+}
+
+	var rows = crisprOuput //seq brute
 	var rows1 =rows
 	var passe2 = false;
 	var passe3 = false;

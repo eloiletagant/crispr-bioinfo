@@ -1,9 +1,3 @@
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<!-- Jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <?php
 include 'inc/header.php';
 ?>
@@ -13,7 +7,7 @@ include 'inc/header.php';
             var dbList = document.getElementById("fichier");
             var url = "https://designer.genomecompiler.com/plasmid_iframe?file_url=";
             var nom = dbList.options[dbList.selectedIndex].text;
-            var url2 = url+/*location.host*/"http://test.basicompta.fr"+"\/"+dbList.options[dbList.selectedIndex].text;
+            var url2 = url + /*location.host*/ "http://test.basicompta.fr" + "\/" + dbList.options[dbList.selectedIndex].text;
             $("#url").attr('href', url2).text(nom);
         })
     });
@@ -25,8 +19,8 @@ include 'inc/header.php';
         <select id="fichier">
             <!--<option value="" disabled selected>Choose your option</option>-->
             <option selected>Choisir une option</option>
-            <option>pDe_CAS9.gb</option>
-            <option>pEn_C1_1_SWEET3.gb</option>
+            <option>pDe_CAS9.gb</option> <!-- hote de cas9 -->
+            <option>pEn_C1_1_SWEET3.gb</option><!-- vecteur pour e.coli contenant sweet 3-->
         </select>
         <label>Specificity check</label>
     </div>

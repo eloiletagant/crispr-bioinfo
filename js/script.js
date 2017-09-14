@@ -6,22 +6,9 @@
     $('select').material_select();
     $('header').data('size','big');
 
-    //manage loading of tabs
-    $("#tab1").click(function(){
-        $("#div1").load("inc/test1.php")
-    });
-    $("#tab2").click(function(){
-        $("#div2").load("inc/test2.php")
-    });
-    $("#tab3").click(function(){
-        $("#div3").load("inc/plasmide.php")
-    });
-    $("#tab4").click(function(){
-        $("#div4").load("inc/test4.php")
-    });
-
   }); // end of document ready
 })(jQuery); // end of jQuery name space
+
 
 
 //manage scroll header response
