@@ -4,7 +4,30 @@ var seq.lenght;
 
 // MANIPULATION DE SEQUENCES
 
- 
+/*@ANATOLE*/
+function getFirstHalf(seq){
+	/*@return the fust half of the string*/
+	return seq.substr(0, seq.lenght/2);
+}
+
+ function addExtremities(seq1, seq2) {
+/*	fonction qui ajoute des bouts comme n veut sur la seq + et lal seq -
+	@return fullSeq a combinaison of seq 1 and seq2*/
+
+	seq1 = "ATTG" + seq1;
+	seq2 = seq2 + "CAAA";
+	seq2 = seq2.split("").reverse().join("");
+
+	const fullSeq.seq1 =seq1;
+	const fullSeq.seq2 = seq2;
+
+	return fullSeq;
+}
+
+function getCDS(seq){
+/*	et the coding sequence from a sequence
+	@return cds the codin suequence*/
+}
 
 // BLAST
 function testBlast(){
@@ -108,4 +131,35 @@ var i = 0;
 
 
 
-// CRISPERPLANT
+// CRISPERDIRECTfmg
+
+
+//TRI
+
+function filter(seq, crisprOuput){
+/*	permet d'iterer sur  les rsultats de crisper direct et de ne conserver que ceux :
+- position en debut
+- number of target setInterval
+- nombre de target (sp"cificité (le plus petit possible) <4
+- trie sur le TM (doit etre incLu entre 60 et 80) ; plus on est porche de 77 mieux c'es
+	@param seq sequence d'origine
+	@param crisprOutput l'output de criper plant
+	@return json json trié dees resultats*/
+
+
+
+	//iteration sur chcun des raws
+		//filtre 1 && filtre 2 filtre 3 && filtre 4
+				//add to json
+
+
+
+	return json
+}
+
+
+
+
+
+
+//ADD BOUT
