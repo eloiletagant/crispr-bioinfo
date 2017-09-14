@@ -9,7 +9,8 @@ $_SESSION['res'] = 'NULL';
       <form method="POST" action="">
            <div class="row">
              <form class="col s12">
-                 <div class="bg-grey row" style="margin-top: 50px;">
+                 <h3>INPUTS</h3>
+                 <div class="bg-grey row">
                      <div class="input-field col m12">
                         <select id="species">
                           <!--<option value="" disabled selected>Choose your option</option>-->
@@ -25,6 +26,7 @@ $_SESSION['res'] = 'NULL';
                        <label for="seq">Paste a nucleotide sequence</label>
                      </div>
                  </div>
+                 <h3>FILTERS</h3>
                  <div class="bg-grey row">
                      <div class="input-field col s6">
                         <input placeholder="1" id="nbrMaxTarget20" type="number" class="validate">
@@ -52,7 +54,7 @@ $_SESSION['res'] = 'NULL';
            </div>
 
            <div class="row center">
-             <a id="submit_seq" href="res.php" type="submit" class="btn-large waves-effect waves-light orange">Envoyer</a>
+             <a id="submit_seq" href="res.php" type="submit" class="btn-large waves-effect waves-light light-green">Envoyer</a>
            </div>
       </form>
 
@@ -88,7 +90,7 @@ $_SESSION['res'] = 'NULL';
             data:{
                 seq: seq,
                 db: db,
-                paramValues = paramValues
+                paramValues: paramValues
             }
         });
     })

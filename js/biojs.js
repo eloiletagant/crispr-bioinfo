@@ -121,7 +121,7 @@ function getJSON(rid, callback) {
 
 //TRI
 
-function filter(seq, crisprOuput){
+function filter(seq, crisprOuput, paramValues){
 	/*	permet d'iterer sur  les rsultats de crisper direct et de ne conserver que ceux :
 	- position : dans le premier moitiée
 	- nombre de target (sp"cificité (le plus petit possible) <4
@@ -131,17 +131,21 @@ function filter(seq, crisprOuput){
 	@return json json trié dees resultats*/
 
 	var posHalf = seq.length/2 //position du nt a la moitiée de la sequence d'input
-	console.log("posHalf", posHalf)
-	var nbrMaxTarget20 = 3 //nombr de repetition de la sequence sible dans le genome d'interet
-	var nbrMaxTarget12 = 3
-	var nbrMaxTarget8 = 3
-	var TMexpect = 76 //meilleur TM attendu
-	var TMerror = 6 // marge d'erreur du le meilleur tm
-	var TMmin = TMexpect - TMerror //minimum du tm
-	var TMmax = TMexpect+ TMerror // maximum tu tm
 
-	crisprOuput = JSON.parse(crisprOuput); //recuperation des resultats
-	var rows = crisprOuput.results //seq brute
+	var nbrMaxTarget20 = paramValues[0] //nombr de repetition de la sequence sible dans le genome d'interet
+	var nbrMaxTarget12 = paramValues[1]
+	var nbrMaxTarget8 = paramValues[2]
+	var TMexpect = paramValues[3] //meilleur TM attendu
+	var TMerror = paramValues[4] // marge d'erreur du le meilleur tm
+	var TMmin = TMexpect - TMerror //minimum du tm
+	var TMmax = TMexpect + TMerror // maximum tu tm
+
+	try {
+		crisprOuput = JSON.parse(crisprOuput); //recuperation des resultats
+	} catch (e) {
+		console.log('slt')
+	}
+	var rows = crisprOuput //seq brute
 	var rowsFiltred = [];
 	var passe2 = false;
 	var passe3 = false;
@@ -214,7 +218,7 @@ function filter(seq, crisprOuput){
 	}
 
 
-	function buildPlasmid(filteredJSON){
+	function buildPlasmid(filteredJSON) {
 		// a partir d'un json filtré de sgrna
 		// créer pour chaque resultat,  le brin + et le brin -
 		// les ajoute au json et renvoi le tout
@@ -224,7 +228,7 @@ function filter(seq, crisprOuput){
 		var v;
 		var finalJSON = filteredJSON
 		for ( i  in finalJSON){
-			seq = filnalSON[i].sequence
+			seq = finalJSON[i].sequence
 			seqStrand = finalJSON[i].strand
 			console.log("seq",seq)
 			console.log("strand",seqStrand)

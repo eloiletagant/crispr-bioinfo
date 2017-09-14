@@ -2,7 +2,8 @@
 include 'inc/header.php';
 $data = $_SESSION['res'];
 $seq = $_SESSION['seq'];
-$paramValues = $_SESSION['paramValues'];
+$paramValues = json_encode($_SESSION['paramValues']);
+
 ?>
 
 <div class="container">
@@ -14,7 +15,7 @@ $paramValues = $_SESSION['paramValues'];
        <ul class="tabs">
          <li class="tab col s4"><a id="tab1" class="active" href="#results">raw results</a></li>
          <li class="tab col s4"><a id="tab2" href="#filteredContent">filtered results</a></li>
-         <li class="tab col s4"><a id="tab3" href="#div3">plasmid</a></li>
+         <li class="tab col s4"><a id="tab3" href="#plasmid">plasmid</a></li>
        </ul>
      </div>
      <div id="results" class="col s12">
@@ -23,24 +24,28 @@ $paramValues = $_SESSION['paramValues'];
      <div id="filteredContent" class="col s12">
          <table id="filteredJsonTable"></table>
      </div>
-     <div id="div3" class="col s12"></div>
-   </div>
-
+     <div id="plasmid" class="col s12">
+         <table id="finalJsonTable"></table>
+    </div>
+  </div>
 
 </div>
 
 <script>
 $(document).ready(function () {
-    //"{"error":"","pam_sequence":"NGG","program_name":"CRISPRdirect","results":[],"sequence_name":"","specificity_check":"Human (Homo sapiens) genome, GRCh37/hg19 (Feb, 2009)","time":"2017-09-12 00:58:22"}"
 
+    //get data
     var data = '<?= $data ?>'
     var seq = '<?= $seq ?>'
-    console.log(seq)
-    //console.log(data)
+    var paramValues = JSON.parse('<?= $paramValues ?>')
+    for (var i = 0; i < paramValues.length; i++) {
+        paramValues[i] = parseInt(paramValues[i])
+    }
+
+    // try to parse the response string (json)
     let done = false
     while (!done) {
         try {
-            // try to parse the response string
             var json = JSON.parse(data);
             done = true
             $('#loader').css('display', 'none')
@@ -49,13 +54,16 @@ $(document).ready(function () {
         }
     }
 
+    //manage different cases
     $('#content').empty()
     if (json.error !== "") {
         $('#content').text("Une erreur est survenue : " + json.error)
     } else if (json.results.length === 0) {
         $('#content').text("Aucun résultat trouvé")
 
+    //if there are results
     } else {
+
         //first display raw results
         $('#content').html('<b>Espèce</b> : ' + json.specificity_check + '<br />')
         $('#content').append('<b>PAM sequence</b> : ' + json.pam_sequence)
@@ -72,13 +80,22 @@ $(document).ready(function () {
         }
 
         //then display filtered results
-        var filteredJson = filter(seq, json.results)
+        var filteredJson = filter(seq, json.results, paramValues)
 
         if (filteredJson.length > 0) {
             ConvertJsonToTable(filteredJson, 'filteredJsonTable', null, 'Download')
         } else {
             $('#filteredContent').append('Aucun résultat après filtrage.')
         }
+
+        //and finally display sgrna for plasmid construction
+        var finalRes = buildPlasmid(filteredJson)
+        if (finalRes.length > 0) {
+            ConvertJsonToTable(finalRes, 'finalJsonTable', null, 'Download')
+        } else {
+            $('#plasmid').append('Aucun résultat.')
+        }
+
     }
 });
 </script>
