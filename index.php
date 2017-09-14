@@ -66,6 +66,7 @@ $_SESSION['res'] = 'NULL';
         if (seq === '') {
             seq = document.getElementById('seq').placeholder
         }
+        console.log('seq', seq)
         var dbList = document.getElementById("species")
         var db = dbList.options[dbList.selectedIndex].value
         $.ajax({

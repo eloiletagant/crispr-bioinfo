@@ -151,7 +151,7 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
         }
         tb = tb.format(trCon);
         tbl = tbl.format(th, tb);
-		console.log(tbl);
+		//console.log(tbl);
         $('#' + tableId).html(tbl);
         return tbl;
     }

@@ -1,7 +1,8 @@
 <?php
 include 'inc/header.php';
 $data = $_SESSION['res'];
-$seq = $_POST['seq'];
+$seq = $_SESSION['seq'];
+var_dump($seq);
 ?>
 
 <div class="container">
@@ -14,14 +15,14 @@ $seq = $_POST['seq'];
          <li class="tab col s4"><a id="tab3" href="#div3">plasmid</a></li>
        </ul>
      </div>
-     <div id="content" class="col s12"></div>
-     <div id="filteredContent" class="col s12"></div>
+     <div id="results" class="col s12">
+         <div id="content"></div>
+         <table id="jsonTable"></table>
+    </div>
+     <div id="filteredContent" class="col s12">
+         <table id="filteredJsonTable"></table>
+     </div>
      <div id="div3" class="col s12"></div>
-   </div>
-
-   <div id="results">
-       <div id="content"></div>
-       <table id="jsonTable"></table>
    </div>
 
 
@@ -33,6 +34,7 @@ $(document).ready(function () {
 
     var data = '<?= $data ?>'
     var seq = '<?= $seq ?>'
+    console.log(seq)
     //console.log(data)
     let done = false
     while (!done) {
@@ -70,6 +72,7 @@ $(document).ready(function () {
 
         //then display filtered results
         var filteredJson = filter(seq, json.results)
+
         if (filteredJson.length > 0) {
             ConvertJsonToTable(filteredJson, 'filteredJsonTable', null, 'Download')
         } else {

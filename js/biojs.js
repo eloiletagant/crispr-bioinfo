@@ -147,9 +147,9 @@ try {
 }
 
 	var rows = crisprOuput //seq brute
-	var rows1 =rows
 	var passe2 = false;
 	var passe3 = false;
+	var rowsFiltred = []
 
 
 	console.log("JSON pas filtré", rows)
