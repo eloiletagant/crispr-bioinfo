@@ -11,20 +11,20 @@ $paramValues = json_encode($_SESSION['paramValues']);
     <div id="content"></div>
 
     <div class="row">
-     <div class="col s12">
+     <div class="col s12" style="margin-bottom:20px;">
        <ul class="tabs">
-         <li class="tab col s4"><a id="tab1" class="active" href="#results">raw results</a></li>
-         <li class="tab col s4"><a id="tab2" href="#filteredContent">filtered results</a></li>
-         <li class="tab col s4"><a id="tab3" href="#plasmid">plasmid</a></li>
+         <li class="bg-grey tab col s4"><a id="tab1" class="active" href="#results">raw results</a></li>
+         <li class="bg-grey tab col s4"><a id="tab2" href="#filteredContent">filtered results</a></li>
+         <li class="bg-grey tab col s4"><a id="tab3" href="#plasmid">plasmid</a></li>
        </ul>
      </div>
-     <div id="results" class="col s12">
+     <div id="results" class="col s12 card-grey">
          <table id="jsonTable"></table>
     </div>
-     <div id="filteredContent" class="col s12">
+     <div id="filteredContent" class="col s12 card-grey">
          <table id="filteredJsonTable"></table>
      </div>
-     <div id="plasmid" class="col s12">
+     <div id="plasmid" class="col s12 card-grey">
          <table id="finalJsonTable"></table>
     </div>
   </div>

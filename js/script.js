@@ -5,6 +5,10 @@
     $('.button-collapse').sideNav();
     $('select').material_select();
     $('header').data('size','big');
+    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+    particlesJS.load('particles-js', 'js/particlesjs-config.json', function() {
+      console.log('callback - particles.js config loaded');
+    });
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space

@@ -20,15 +20,18 @@ if (session_status() == PHP_SESSION_NONE){
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/tablebuilder.js"></script>
+  <script src="js/particles.js"></script>
   <script src="js/biojs.js"></script>
   <script src="js/script.js"></script>
 </head>
 <body>
 
 <a href="index.php" class="light-green-text">
-<header>
-    <h4 class="center-align">sgRNA Finder</h4>
-</header>
+    <header>
+        <h4 class="center-align">sgRNA Finder</h4>
+    </header>
 </a>
 
-<main>
+
+<main id="particles-js">
+<div id="body-content">

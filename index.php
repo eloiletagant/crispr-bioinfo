@@ -5,29 +5,32 @@ $_SESSION['res'] = 'NULL';
 ?>
 
     <div class="container">
-
       <form method="POST" action="">
            <div class="row">
              <form class="col s12">
-                 <h3>INPUTS</h3>
-                 <div class="bg-grey row">
-                     <div class="input-field col m12">
+                  <h3>INPUTS</h3>
+                  <div class="card-grey row">
+                     <div class="input-field col s12">
+                       <textarea id="seq" name="seq" class="materialize-textarea" placeholder="ATGGGTGATAAACTTCGATTATCCATCGGAATTTTGGGAAACGGAGCTTCTCTGTTGCTATATACAGCTCCAATAGTAACATTTTCAAGGGTGTTTAAGAAGAAAAGCACAGAGGAATTCTCATGTTTTCCTTACGTTATGACACTCTTTAACTGTTTGATATATACTTGGTACGGTTTACCGATTGTGAGTCATCTTTGGGAGAATCTTCCTCTCGTCACCATTAATGGAGTCGGCATCCTTCTCGAATCTATCTTCATTTTCATATATTTCTACTACGCATCACCAAAAGAAAAGATTAAGGTTGGTGTTACATTTGTTCCGGTGATCGTTGGGTTCGGCTTAACGACAGCAATCTCAGCCTTGGTATTTGACGACCATCGTCACCGAAAATCATTCGTCGGAAGTGTTGGCCTCGTGGCTTCCATCTCTATGTATGGTTCTCCTCTCGTCGTTATGAAGAAAGTGATAGAGACAAGAAGTGTGGAATACATGCCGTTTTACTTGTCCTTCTTCTCATTTCTGGCTAGTTCCCTTTGGTTGGCATATGGCTTACTCAGCCATGATCTCTTTCTTGCGTCACCTAATATGGTTGCGACTCCATTGGGAATTCTCCAACTTATCCTCTACTTCAAGTACAAGAATAAGAAGGATTTAGCACCAACAACAATGGTGATCACCAAACGAAATGATCATGATGACAAGAACAAAGCCACACTTGAGTTTGTTGTTGACGTTGATCGTAATAGTGATACCAATGAGAAGAATTCTAACAATGCCTCATCGATCTAA"></textarea>
+                       <label for="seq">Paste a nucleotide sequence</label>
+                     </div>
+
+                 </div>
+
+
+                 <div class="card-grey row">
+                     <div class="input-field col s12">
                         <select id="species">
                           <!--<option value="" disabled selected>Choose your option</option>-->
                           <option value="TAIR10" selected>Thale cress (Arabidopsis thaliana) genome, TAIR10 (Nov, 2010)</option>
                           <option value="IGGP_12x">Grape (Vitis vinifera) genome, IGGP_12x (Jun, 2011)</option>
                           <option value="hg19">Human (Homo sapiens) genome, GRCh37/hg19 (Feb, 2009)</option>
                         </select>
-                        <label>Specificity check</label>
+                        <label>Species</label>
                       </div>
-
-                     <div class="input-field col s12">
-                       <textarea id="seq" name="seq" class="materialize-textarea" placeholder="ATGGGTGATAAACTTCGATTATCCATCGGAATTTTGGGAAACGGAGCTTCTCTGTTGCTATATACAGCTCCAATAGTAACATTTTCAAGGGTGTTTAAGAAGAAAAGCACAGAGGAATTCTCATGTTTTCCTTACGTTATGACACTCTTTAACTGTTTGATATATACTTGGTACGGTTTACCGATTGTGAGTCATCTTTGGGAGAATCTTCCTCTCGTCACCATTAATGGAGTCGGCATCCTTCTCGAATCTATCTTCATTTTCATATATTTCTACTACGCATCACCAAAAGAAAAGATTAAGGTTGGTGTTACATTTGTTCCGGTGATCGTTGGGTTCGGCTTAACGACAGCAATCTCAGCCTTGGTATTTGACGACCATCGTCACCGAAAATCATTCGTCGGAAGTGTTGGCCTCGTGGCTTCCATCTCTATGTATGGTTCTCCTCTCGTCGTTATGAAGAAAGTGATAGAGACAAGAAGTGTGGAATACATGCCGTTTTACTTGTCCTTCTTCTCATTTCTGGCTAGTTCCCTTTGGTTGGCATATGGCTTACTCAGCCATGATCTCTTTCTTGCGTCACCTAATATGGTTGCGACTCCATTGGGAATTCTCCAACTTATCCTCTACTTCAAGTACAAGAATAAGAAGGATTTAGCACCAACAACAATGGTGATCACCAAACGAAATGATCATGATGACAAGAACAAAGCCACACTTGAGTTTGTTGTTGACGTTGATCGTAATAGTGATACCAATGAGAAGAATTCTAACAATGCCTCATCGATCTAA"></textarea>
-                       <label for="seq">Paste a nucleotide sequence</label>
-                     </div>
-                 </div>
+                  </div>
                  <h3>FILTERS</h3>
-                 <div class="bg-grey row">
+                 <div class="card-grey row">
                      <div class="input-field col s6">
                         <input placeholder="1" id="nbrMaxTarget20" type="number" class="validate">
                         <label for="first_name">Nb max de régions homologues au sgRNA de 20nt</label>
@@ -54,7 +57,7 @@ $_SESSION['res'] = 'NULL';
            </div>
 
            <div class="row center">
-             <a id="submit_seq" href="res.php" type="submit" class="btn-large waves-effect waves-light light-green">Envoyer</a>
+             <a id="submit_seq" href="res.php" type="submit" class="btn-large waves-effect waves-light light-green">submit</a>
            </div>
       </form>
 
