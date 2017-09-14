@@ -9,7 +9,7 @@ $_SESSION['res'] = 'NULL';
       <form method="POST" action="">
            <div class="row">
              <form class="col s12">
-                 <div class="card row" style="margin-top: 50px;">
+                 <div class="bg-grey row" style="margin-top: 50px;">
                      <div class="input-field col m12">
                         <select id="species">
                           <!--<option value="" disabled selected>Choose your option</option>-->
@@ -25,7 +25,7 @@ $_SESSION['res'] = 'NULL';
                        <label for="seq">Paste a nucleotide sequence</label>
                      </div>
                  </div>
-                 <div class="card row">
+                 <div class="bg-grey row">
                      <div class="input-field col s6">
                         <input placeholder="1" id="nbrMaxTarget20" type="number" class="validate">
                         <label for="first_name">Nb max de régions homologues au sgRNA de 20nt</label>
@@ -60,13 +60,26 @@ $_SESSION['res'] = 'NULL';
 
 
 <script>
+
+    function getValue(id) {
+        var value = $('#' + id).val()
+        if (value === '') {
+            value = document.getElementById(id).placeholder
+        }
+        return value
+    }
+
     $('#submit_seq').click(function() {
 
-        var seq = $('#seq').val()
-        if (seq === '') {
-            seq = document.getElementById('seq').placeholder
-        }
-        console.log('seq', seq)
+        var seq = getValue('seq')
+        //nombr de repetition de la sequence sible dans le genome d'interet
+        var nbrMaxTarget20 = getValue('nbrMaxTarget20')
+    	var nbrMaxTarget12 = getValue('nbrMaxTarget12')
+    	var nbrMaxTarget8 = getValue('nbrMaxTarget8')
+    	var TMexpect = getValue('TMexpect') //meilleur TM attendu
+    	var TMerror = getValue('TMerror') // marge d'erreur du le meilleur tm
+        var paramValues = [nbrMaxTarget20, nbrMaxTarget12, nbrMaxTarget8, TMexpect, TMerror]
+
         var dbList = document.getElementById("species")
         var db = dbList.options[dbList.selectedIndex].value
         $.ajax({
@@ -74,10 +87,10 @@ $_SESSION['res'] = 'NULL';
             url: "some.php",
             data:{
                 seq: seq,
-                db: db
+                db: db,
+                paramValues = paramValues
             }
         });
-
     })
 </script>
 

@@ -2,10 +2,12 @@
 include 'inc/header.php';
 $data = $_SESSION['res'];
 $seq = $_SESSION['seq'];
-var_dump($seq);
+$paramValues = $_SESSION['paramValues'];
 ?>
 
 <div class="container">
+
+    <div id="content"></div>
 
     <div class="row">
      <div class="col s12">
@@ -16,7 +18,6 @@ var_dump($seq);
        </ul>
      </div>
      <div id="results" class="col s12">
-         <div id="content"></div>
          <table id="jsonTable"></table>
     </div>
      <div id="filteredContent" class="col s12">
@@ -56,8 +57,8 @@ $(document).ready(function () {
 
     } else {
         //first display raw results
-        $('#content').html('Espece : ' + json.specificity_check + '<br />')
-        $('#content').append('PAM sequence : ' + json.pam_sequence)
+        $('#content').html('<b>Espèce</b> : ' + json.specificity_check + '<br />')
+        $('#content').append('<b>PAM sequence</b> : ' + json.pam_sequence)
 
         /*var res = $.grep(json.results, function(n, i) {
           return n.hit_20mer == '1' && n.hit_12mer == '1' && n.tttt == '0'
