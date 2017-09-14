@@ -178,7 +178,7 @@ function filter(seq, crisprOuput){
 			}
 		}
 
-		var raws3 = raws2;
+		var rows3 = rows2;
 
 		if (Object.keys(rows2).length == 0){//Apres une dexuime loop on check si on a des results,
 			passe3=true;
@@ -194,30 +194,30 @@ function filter(seq, crisprOuput){
 			}
 		}
 
-//On regarde quelle passe on a éxécuté
-if(passe3){
-	console.log("passe 3", rows3)
-}
-else if (passe2) {
-	console.log("passe 2", rows2)
-}
-else {
-	console.log("passe", rows)
-}
+		//On regarde quelle passe on a éxécuté
+		if(passe3){
+			console.log("passe 3", rows3)
+		}
+		else if (passe2) {
+			console.log("passe 2", rows2)
+		}
+		else {
+			console.log("passe", rows)
+		}
 		console.log("JSON filtré", rows) //affichage du json filtré
 	}
 
 
-		function addExtremities(seq1, seq2) {
-			/*	fonction qui ajoute des bouts comme n veut sur la seq + et lal seq -
-			@return fullSeq a combinaison of seq 1 and seq2*/
+	function addExtremities(seq1, seq2) {
+		/*	fonction qui ajoute des bouts comme n veut sur la seq + et lal seq -
+		@return fullSeq a combinaison of seq 1 and seq2*/
 
 
-			seq1 = "ATTG" + seq1;
-			seq2 = seq2 + "CAAA";
-			seq2 = seq2.split("").reverse().join("");
+		seq1 = "ATTG" + seq1;
+		seq2 = seq2 + "CAAA";
+		seq2 = seq2.split("").reverse().join("");
 
-			var  fullSeq = [seq1, seq2];
+		var  fullSeq = [seq1, seq2];
 
-			return fullSeq;
-		}
+		return fullSeq;
+	}
