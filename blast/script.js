@@ -4,7 +4,7 @@ var seq.lenght;
 
 // MANIPULATION DE SEQUENCES
 
-
+ 
 
 // BLAST
 function testBlast(){
