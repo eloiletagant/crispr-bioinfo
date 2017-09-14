@@ -146,15 +146,16 @@ function filter(seq, crisprOuput){
 	@param crisprOutput l'output de criper plant
 	@return json json trié dees resultats*/
 
-
+ 	var data = getCrisprDirectJSON(); 
 
 	//iteration sur chcun des raws
+
 		//filtre 1 && filtre 2 filtre 3 && filtre 4
 				//add to json
 
 
 
-	return json
+	return $.grep;
 }
 
 
