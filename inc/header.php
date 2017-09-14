@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php session_start();?>
+<?php
+if (session_status() == PHP_SESSION_NONE){
+  session_start();
+}
+?>
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
