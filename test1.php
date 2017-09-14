@@ -53,8 +53,7 @@ $data = $_SESSION['res'];
 
     <div id="content">
     </div>
-    <table id="jsonTable" style="height:300px;">
-    </table>
+    <table id="jsonTable"></table>
 </div>
 
 <script src="js/tablebuilder.js"></script>

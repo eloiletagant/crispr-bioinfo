@@ -87,11 +87,19 @@ function ConvertJsonToTable(parsedJson, tableId, tableClassName, linkText)
             // If JSON data is an object array, headers are automatically computed
             if(typeof(parsedJson[0]) == 'object')
             {
-                headers = array_keys(parsedJson[0]);
 
+                //headers = array_keys(parsedJson[0]);
+                headers = ["start", "end", "strand", "sequence", "gc", "tm", "tttt", "resite", "hit_20mer", "hit_12mer", "hit_8mer"]
+
+                // make automatically header
                 for (var i = 0; i < headers.length; i++)
-                    thCon += thRow.format(headers[i]);
-            }
+                    thCon += thRow.format(headers[i].toUpperCase());
+                }
+                //but we rather make our own header :
+                /*
+                thCon += thRow.format("start") + thRow.format("end") + thRow.format("strand") + thRow.format("sequence") + thRow.format("gc") + thRow.format("tm") + thRow.format("tttt") + thRow.format("resite") + thRow.format("hit_20mer") + thRow.format("hit_12mer") + thRow.format("hit_8mer");
+                */
+
         }
         th = th.format(tr.format(thCon));
 
