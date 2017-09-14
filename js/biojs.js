@@ -130,82 +130,81 @@ function filter(seq, crisprOuput){
 	@param crisprOutput l'output de criper plant
 	@return json json trié dees resultats*/
 
-	var posHalf = seq.lenght/2 //position du nt a la moitiée de la sequence d'input
-	var nbrMaxTarget20 = 1 //nombr de repetition de la sequence sible dans le genome d'interet
-	var nbrMaxTarget12 = 1
-	var nbrMaxTarget8 = 1
-	var nbrMaxMaxTarget20= 3 //cf plus haut
+	var posHalf = seq.length/2 //position du nt a la moitiée de la sequence d'input
+	console.log("posHalf", posHalf)
+	var nbrMaxTarget20 = 3 //nombr de repetition de la sequence sible dans le genome d'interet
+	var nbrMaxTarget12 = 3
+	var nbrMaxTarget8 = 3
 	var TMexpect = 76 //meilleur TM attendu
-	var TMerror = 3 // marge d'erreur du le meilleur tm
+	var TMerror = 6 // marge d'erreur du le meilleur tm
 	var TMmin = TMexpect - TMerror //minimum du tm
 	var TMmax = TMexpect+ TMerror // maximum tu tm
 
 	crisprOuput = JSON.parse(crisprOuput); //recuperation des resultats
 	var rows = crisprOuput.results //seq brute
-	var rows1 =rows
+	var rowsFiltred = [];
 	var passe2 = false;
 	var passe3 = false;
 
 
 	console.log("JSON pas filtré", rows)
 
-	for ( var row in rows){//PREMIERE PASSE - 20 nt
-		if (row.end <= posHalf && //ôsition
-			row.hit_20mer == nbrMaxTarget20  //nombr de target pour 20
-			(row.tm>= TMmin && row.tm <= TMmax))  //temperature
-			{
-				console.log("row kept", row)//filtres respectés on keep
-			}
-			else{
-				console.log("row deleted", row);
-				delete rows1[row];
-			}
-		}
+	for ( var i in rows){//PREMIERE PASSE - 20 nt
+	  // console.log("bite", rows[i]);
+	  // console.log("end", rows[i].end);
+	  // console.log("hit_20mer", rows[i].hit_20mer);
+	  // console.log("tm", rows[i].tm);
+	  if (rows[i].end <= posHalf && //ôsition
+	    (rows[i].hit_20mer <= nbrMaxTarget20 && rows[i].hit_20mer != 0) &&   //nombr de target pour 20
+	    (rows[i].tm>= TMmin && rows[i].tm <= TMmax))  //temperature
+	    {
+	      console.log("1row kept", rows[i])//filtres respectés on keep
+	      rowsFiltred.push(rows[i]);
+	    }
+	  }
 
-		var rows2=rows1;
+	  console.log("leght passe 1",Object.keys(rowsFiltred).length);
+	  if (Object.keys(rowsFiltred).length == 0){ //Apres une premere loop on check si on a des results,
+	    console.log("deuxieme passe");
+	    passe2 = true;
+	    for (var i in rows){//DEUXIEME PASSE 12NT
 
-		if (Object.keys(rows1).length == 0){ //Apres une premere loop on check si on a des results,
-			passe2 = true;
-			for (var row in rows1){//DEUXIEME PASSE 12NT
-				if (row.end <= posHalf && //ôsition
-					row.hit_12mer == nbrMaxTarget12  //nombr de target pour 20
-					(row.tm>= TMmin && row.tm <= TMmax))  //temperature
-					{	console.log("row kept", row)
-				}else{
-					console.log("row deleted", row);
-					delete rows2[row]
-				}
-			}
-		}
+	      if (rows[i].end <= posHalf && //ôsition
+	        (rows[i].hit_12mer <= nbrMaxTarget12 && rows[i].hit_12mer != 0) &&
+	        (rows[i].tm>= TMmin && rows[i].tm <= TMmax))  //temperature
+	        {	console.log("2row kept", rows[i])
+	        rowsFiltred.push(rows[i])
+	      }
+	    }
+	  }
 
-		var rows3 = rows2;
-
-		if (Object.keys(rows2).length == 0){//Apres une dexuime loop on check si on a des results,
-			passe3=true;
-			for (var row in rows){//DEUXIEME PASSE 8NT
-				if (row.end <= posHalf &&
-					row.hit_8mer == nbrMaxTarget8
-					(row.tm>= TMmin && row.tm <= TMmax))
-					{	console.log("row kept", row)
-				}else{
-					console.log("row deleted", row);
-					delete rows3[row]
-				}
-			}
-		}
+	  if (Object.keys(rowsFiltred).length == 0){//Apres une dexuime loop on check si on a des results,
+	    passe3=true;
+	    console.log("troisieme passe");
+	    for (var i in rows){//DEUXIEME PASSE 8NT
+	      if (rows[i].end <= posHalf &&
+	        (rows[i].hit_8mer <= nbrMaxTarget8 && rows[i].hit_8mer != 0) &&
+	        (rows[i].tm>= TMmin && rows[i].tm <= TMmax))
+	        {	console.log("3row kept", rows[i])
+	        rowsFiltred.push(rows[i])
+	      }
+	    }
+	  }
 
 		//On regarde quelle passe on a éxécuté
 		if(passe3){
-			console.log("passe 3", rows3)
+			console.log("passe 3", rowsFiltred)
 		}
 		else if (passe2) {
-			console.log("passe 2", rows2)
+			console.log("passe 2", rowsFiltred)
 		}
 		else {
-			console.log("passe", rows)
+			console.log("passe", rowsFiltred)
 		}
-		console.log("JSON filtré", rows) //affichage du json filtré
+		console.log("JSON filtré", rowsFiltred) //affichage du json filtré
 	}
+
+
 
 
 	function addExtremities(seq1, seq2) {
