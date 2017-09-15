@@ -194,27 +194,61 @@ function filter(seq, crisprOuput, paramValues){
 				}
 			}
 		}
-
-
 		console.log("JSON filtré", rowsFiltred) //affichage du json filtré
 		return rowsFiltred;
 	}
 
 
+	function complement(seq){
+		var seqC = "";
+		for (var i in seq){
+			switch (seq[i]) {
+				case 'A':
+				seqC+='T'
+				break;
+				case 'T':
+				seqC+='A'
+				break;
+				case 'C':
+				seqC+='G'
+				break;
+				case 'G':
+				seqC+='C'
+				break;
 
+			}
+		}
+		return seqC;
+	}
 
-	function addExtremities(seq1, seq2) {
+	function reverse(seq){
+		seqR = "";
+		seqR  = seq.split("").reverse().join("")
+		return seqR;
+	}
+
+	function addExtremities(seq, strand) {
 		/*	fonction qui ajoute des bouts comme n veut sur la seq + et lal seq -
 		@return fullSeq a combinaison of seq 1 and seq2*/
+		//+
+		//attg+seq
+		// return compl + reverse
 
+		var seq1;
+		var seq2;
 
-		seq1 = "ATTG" + seq1;
-		seq2 = seq2 + "CAAA";
-		seq2 = seq2.split("").reverse().join("");
-
-		var  fullSeq = [seq1, seq2];
-
-		return fullSeq;
+		if (strand =="+"){
+			console.log("-------------------+")
+			seq1 = "ATTG"+seq
+			seq2 = "AAAC"+ reverse(complement(seq))
+		}else if (strand =="-") {
+			console.log("----------------------")
+			seq1 = seq +"AAAC"
+			seq2 = reverse(complement(seq)+"GTTA")
+		}else {
+			console.log("y'a une couille")
+		}
+		return [seq1, seq2];
 	}
 
 
@@ -227,19 +261,11 @@ function filter(seq, crisprOuput, paramValues){
 		var seq;
 		var v;
 		var finalJSON = filteredJSON
-		for ( i  in finalJSON){
+		for (var i  in finalJSON){
 			seq = finalJSON[i].sequence
 			seqStrand = finalJSON[i].strand
-			console.log("seq",seq)
-			console.log("strand",seqStrand)
-
-			if (seqStrand>0){//si le brun qu'on a est le plus
-				v = addExtremities(seq, seq.split("").reverse().join(""))
-			}
-		else {//sile brin est le -
-			v = addExtremities(seq.split("").reverse().join(""), seq)
+			v  = addExtremities(seq, seqStrand);
+			finalJSON[i].sequence = v[0] +"<br>"+v[1]
 		}
-		finalJSON[i].sequence = v[0] +"<br>"+v[1]
+		return finalJSON;
 	}
-	return finalJSON
-}
