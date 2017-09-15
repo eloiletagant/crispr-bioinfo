@@ -194,40 +194,37 @@ function filter(seq, crisprOuput, paramValues){
 				}
 			}
 		}
-
-
 		console.log("JSON filtré", rowsFiltred) //affichage du json filtré
 		return rowsFiltred;
 	}
 
 
 	function complement(seq){
-		console("avant", seq)
-		for (i  in seq){
-			switch(seq[i]) {
+		var seqC = "";
+		for (var i in seq){
+			switch (seq[i]) {
 				case 'A':
-				seq[i] = 'T'
+				seqC+='T'
 				break;
-
 				case 'T':
-				seq[i] = 'A'
+				seqC+='A'
 				break;
-
 				case 'C':
-				seq[i] = 'G'
+				seqC+='G'
+				break;
+				case 'G':
+				seqC+='C'
 				break;
 
-				case 'G':
-				seq[i] = 'C'
-				break;
 			}
 		}
-		console("apres", seq)
-		return seq;
+		return seqC;
 	}
 
 	function reverse(seq){
-		return seq.split("").reverse().join("")
+		seqR = "";
+		seqR  = seq.split("").reverse().join("")
+		return seqR;
 	}
 
 	function addExtremities(seq, strand) {
@@ -237,22 +234,21 @@ function filter(seq, crisprOuput, paramValues){
 		//attg+seq
 		// return compl + reverse
 
-var seq1;
-var seq2;
+		var seq1;
+		var seq2;
 
-		if (strand ==1){
+		if (strand =="+"){
 			console.log("-------------------+")
 			seq1 = "ATTG"+seq
 			seq2 = "AAAC"+ reverse(complement(seq))
-		}else if (strand ==0) {
+		}else if (strand =="-") {
 			console.log("----------------------")
 			seq1 = seq +"AAAC"
 			seq2 = reverse(complement(seq)+"GTTA")
 		}else {
 			console.log("y'a une couille")
 		}
-		var  fullSeq = [seq1, seq2];
-		return fullSeq;
+		return [seq1, seq2];
 	}
 
 
@@ -265,13 +261,11 @@ var seq2;
 		var seq;
 		var v;
 		var finalJSON = filteredJSON
-		for ( i  in finalJSON){
+		for (var i  in finalJSON){
 			seq = finalJSON[i].sequence
 			seqStrand = finalJSON[i].strand
-			console.log("seq",seq)
-
 			v  = addExtremities(seq, seqStrand);
+			finalJSON[i].sequence = v[0] +"<br>"+v[1]
 		}
-		finalJSON[i].sequence = v[0] +"<br>"+v[1]
-	return finalJSON;
-}
+		return finalJSON;
+	}
