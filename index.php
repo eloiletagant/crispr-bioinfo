@@ -77,7 +77,7 @@ $_SESSION['res'] = 'NULL';
     $('#submit_seq').click(function() {
 
         var seq = getValue('seq')
-        seq = seq.replace(/(\r\n|\n|\r)/gm,"");
+        seq = seq.replace(/\W/g, '');
         console.log("seq sans saut de ligne", seq);
         //nombr de repetition de la sequence sible dans le genome d'interet
         var nbrMaxTarget20 = getValue('nbrMaxTarget20')
