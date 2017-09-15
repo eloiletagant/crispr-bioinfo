@@ -89,7 +89,7 @@ $(document).ready(function () {
     } else {
 
         //first display raw results
-        $('#content').html('<b>Espèce</b> : ' + json.specificity_check + '<br />')
+        $('#content').html('<b>Species</b> : ' + json.specificity_check + '<br />')
         $('#content').append('<b>PAM sequence</b> : ' + json.pam_sequence)
 
         /*var res = $.grep(json.results, function(n, i) {
