@@ -201,19 +201,51 @@ function filter(seq, crisprOuput, paramValues){
 	}
 
 
+	function complement(seq){
+		for (i  in seq){
+			switch(seq[i]) {
+				case 'A':
+				seq[i] = 'T'
+				break;
 
+				case 'T':
+				seq[i] = 'A'
+				break;
 
-	function addExtremities(seq1, seq2) {
+				case 'C':
+				seq[i] = 'G'
+				break;
+
+				case 'G':
+				seq[i] = 'C'
+				break;
+			}
+		}
+		return seq;
+	}
+
+	function reverse(seq){
+		return seq.split("").reverse().join("")
+	}
+
+	function addExtremities(seq, strand) {
 		/*	fonction qui ajoute des bouts comme n veut sur la seq + et lal seq -
 		@return fullSeq a combinaison of seq 1 and seq2*/
+		//+
+		//attg+seq
+		// return compl + reverse
 
+var seq1;
+var seq2;
 
-		seq1 = "ATTG" + seq1;
-		seq2 = seq2 + "CAAA";
-		seq2 = seq2.split("").reverse().join("");
-
+		if (strand ==1){
+			seq1 = "ATTG"+seq
+			seq2 = "AAAC"+ reverse(complement(seq))
+		}else if (strand ==0) {
+			seq1 = reverse(seq +"AAAC")
+			seq2 = reverse(reverse(complement(seq)+"GTTA"))
+		}
 		var  fullSeq = [seq1, seq2];
-
 		return fullSeq;
 	}
 
@@ -233,11 +265,7 @@ function filter(seq, crisprOuput, paramValues){
 			console.log("seq",seq)
 			console.log("strand",seqStrand)
 
-			if (seqStrand>0){//si le brun qu'on a est le plus
-				v = addExtremities(seq, seq.split("").reverse().join(""))
-			}
-		else {//sile brin est le -
-			v = addExtremities(seq.split("").reverse().join(""), seq)
+			v  = addExtremities(seq, seqStrand);
 		}
 		finalJSON[i].sequence = v[0] +"<br>"+v[1]
 	}
