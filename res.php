@@ -19,13 +19,13 @@ $paramValues = json_encode($_SESSION['paramValues']);
          <li class="bg-grey tab col s3"><a id="tab3" href="#plasmid">plasmid</a></li>
        </ul>
      </div>
-     <div id="results" class="col s12 card-grey">
+     <div id="results" class="col s12">
          <table id="jsonTable"></table>
     </div>
-     <div id="filteredContent" class="col s12 card-grey">
+     <div id="filteredContent" class="col s12">
          <table id="filteredJsonTable"></table>
      </div>
-     <div id="sgrna" class="col s12 card-grey">
+     <div id="sgrna" class="col s12">
          <table id="finalJsonTable"></table>
     </div>
     <div id="plasmid" class="col s12 card-grey">
