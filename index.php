@@ -31,25 +31,29 @@ $_SESSION['res'] = 'NULL';
                   </div>
                  <h3>FILTERS</h3>
                  <div class="card-grey row">
-                     <div class="input-field col s6">
+                     <div class="input-field col s4">
                         <input placeholder="1" id="nbrMaxTarget20" type="number" class="validate">
-                        <label for="first_name">Nb max de régions homologues au sgRNA de 20nt</label>
+                        <label for="first_name">Max of homologous regions to 20nt sgRNA</label>
                      </div>
-                     <div class="input-field col s6">
+                     <div class="input-field col s4">
                         <input placeholder="1" id="nbrMaxTarget12" type="number" class="validate">
-                        <label for="first_name">Nb max de régions homologues au sgRNA de 12nt</label>
+                        <label for="first_name">Max of homologous regions to 12nt sgRNA</label>
                      </div>
-                     <div class="input-field col s6">
+                     <div class="input-field col s4">
                         <input placeholder="1" id="nbrMaxTarget8" type="number" class="validate">
-                        <label for="first_name">Nb max de régions homologues au sgRNA de 8nt</label>
+                        <label for="first_name">Max of homologous regions to 8nt sgRNA</label>
                      </div>
-                     <div class="input-field col s3">
+                     <div class="input-field col s4">
                         <input placeholder="75" id="TMexpect" type="number" class="validate">
-                        <label for="first_name">Meilleur Tm attendu (°C)</label>
+                        <label for="first_name">Best Tm expected (°C)</label>
                      </div>
-                     <div class="input-field col s3">
+                     <div class="input-field col s4">
                         <input placeholder="6" id="TMerror" type="number" class="validate">
-                        <label for="first_name">Marge d'erreur sur le Tm (°C)</label>
+                        <label for="first_name">Margin of error on Tm (°C)</label>
+                     </div>
+                     <div class="input-field col s4">
+                        <input placeholder="50" id="cutPosition" type="number" class="validate">
+                        <label for="first_name">Targetable part of the sequence (%)</label>
                      </div>
                  </div>
 
@@ -85,7 +89,8 @@ $_SESSION['res'] = 'NULL';
     	var nbrMaxTarget8 = getValue('nbrMaxTarget8')
     	var TMexpect = getValue('TMexpect') //meilleur TM attendu
     	var TMerror = getValue('TMerror') // marge d'erreur du le meilleur tm
-        var paramValues = [nbrMaxTarget20, nbrMaxTarget12, nbrMaxTarget8, TMexpect, TMerror]
+        var cutPosition = getValue('cutPosition')
+        var paramValues = [nbrMaxTarget20, nbrMaxTarget12, nbrMaxTarget8, TMexpect, TMerror, cutPosition]
 
         var dbList = document.getElementById("species")
         var db = dbList.options[dbList.selectedIndex].value

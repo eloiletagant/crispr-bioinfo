@@ -130,7 +130,16 @@ function filter(seq, crisprOuput, paramValues){
 	@param crisprOutput l'output de criper plant
 	@return json json trié dees resultats*/
 
-	var posHalf = seq.length/2 //position du nt a la moitiée de la sequence d'input
+	var posHalf
+	//if junk value we keep all sequence
+	if (paramValues[5] < 0 || paramValues[5] > 100) {
+		posHalf = seq.length
+	} else {
+		posHalf = seq.length * paramValues[5] / 100
+	}
+	console.log('posHalf', posHalf)
+
+	//var posHalf = seq.length/2 //position du nt a la moitiée de la sequence d'input
 
 	var nbrMaxTarget20 = paramValues[0] //nombr de repetition de la sequence sible dans le genome d'interet
 	var nbrMaxTarget12 = paramValues[1]
