@@ -202,6 +202,7 @@ function filter(seq, crisprOuput, paramValues){
 
 
 	function complement(seq){
+		console("avant", seq)
 		for (i  in seq){
 			switch(seq[i]) {
 				case 'A':
@@ -221,6 +222,7 @@ function filter(seq, crisprOuput, paramValues){
 				break;
 			}
 		}
+		console("apres", seq)
 		return seq;
 	}
 
@@ -239,11 +241,15 @@ var seq1;
 var seq2;
 
 		if (strand ==1){
+			console.log("-------------------+")
 			seq1 = "ATTG"+seq
 			seq2 = "AAAC"+ reverse(complement(seq))
 		}else if (strand ==0) {
-			seq1 = reverse(seq +"AAAC")
-			seq2 = reverse(reverse(complement(seq)+"GTTA"))
+			console.log("----------------------")
+			seq1 = seq +"AAAC"
+			seq2 = reverse(complement(seq)+"GTTA")
+		}else {
+			console.log("y'a une couille")
 		}
 		var  fullSeq = [seq1, seq2];
 		return fullSeq;
@@ -263,11 +269,9 @@ var seq2;
 			seq = finalJSON[i].sequence
 			seqStrand = finalJSON[i].strand
 			console.log("seq",seq)
-			console.log("strand",seqStrand)
 
 			v  = addExtremities(seq, seqStrand);
 		}
 		finalJSON[i].sequence = v[0] +"<br>"+v[1]
-	}
-	return finalJSON
+	return finalJSON;
 }
