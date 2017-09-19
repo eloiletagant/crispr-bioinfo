@@ -258,8 +258,9 @@ function filter(seq, crisprOuput, paramValues){
 		}else {
 			console.log("y'a une couille")
 		}
-		seq2= "5'-"+seq2+"-3'"
-		seq1= "5'-"+seq1+"-3'"
+
+		seq2= '<div class="row" style="margin:0"><span class="col s1">5\'</span><span class="col offset-s9 s1">3\'</span></div>' + seq2
+		seq1= '<div class="row" style="margin:0"><span class="col s1">5\'</span><span class="col offset-s9 s1">3\'</span></div>' + seq1
 		return [seq1, seq2];
 	}
 
