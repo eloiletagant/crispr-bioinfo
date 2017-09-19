@@ -250,6 +250,7 @@ function filter(seq, crisprOuput, paramValues){
 			console.log("-------------------+")
 			seq1 = "ATTG"+seq
 			seq2 = "AAAC"+ reverse(complement(seq))
+
 		}else if (strand =="-") {
 			console.log("----------------------")
 			seq1 = seq +"AAAC"
@@ -257,6 +258,8 @@ function filter(seq, crisprOuput, paramValues){
 		}else {
 			console.log("y'a une couille")
 		}
+		seq2= "5'-"+seq2+"-3'"
+		seq1= "5'-"+seq1+"-3'"
 		return [seq1, seq2];
 	}
 
